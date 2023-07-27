@@ -8,4 +8,9 @@ module.exports = {
       .then((result) => res.json(result))
       .catch((err) => res.status(422));
   },
+  getAll: function (req, res) {
+    db.User.find()
+      .then((result) => res.json(result))
+      .catch((err) => res.status(422));
+  },
 };
