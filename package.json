@@ -41,5 +41,8 @@
     "uninstall": "^0.0.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "web-vitals": "^3.4.0"
+  }
 }
