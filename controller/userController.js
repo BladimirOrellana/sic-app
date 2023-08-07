@@ -13,4 +13,13 @@ module.exports = {
       .then((result) => res.json(result))
       .catch((err) => res.status(422));
   },
+  findByuid: function (req, res) {
+    console.log("data controller", req.params.uid);
+    db.User.findOne({ uid: req.params.uid })
+      .then((result) => {
+        console.log("result getbyid ", result);
+        return res.json(result);
+      })
+      .catch((err) => res.status(422));
+  },
 };

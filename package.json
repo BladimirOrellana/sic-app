@@ -17,6 +17,7 @@
     "push": "git add . && git commit -m'upload' && git push origin main "
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.0.5",
     "@mui/joy": "^5.0.0-alpha.63",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",

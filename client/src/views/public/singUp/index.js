@@ -6,12 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 
 import {
-  loginUserAction,
   registerUserWithEmailAction,
   signUpUserFirebaseAction,
 } from "../../../redux/actions/userActions";
 import GetAllUsers from "../../privates/account/Admin/getAllUsers";
-
+import { Alert } from "@mui/joy";
 import Alerts from "../../../components/alerts";
 import { redirect } from "react-router-dom";
 import { Loader } from "three";
@@ -20,30 +19,38 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const currentUser = useSelector((state) => state);
+  const errorMessage = useSelector((state) => state);
 
   if (currentUser.user.currentUser) {
     navigate("/");
   }
 
   console.log("current 3.uid", currentUser.user.currentUser);
+  console.log("current 3.uid", errorMessage);
   const dispatch = useDispatch();
-
+  const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
   const [reEnterPassword, setRenterPassword] = useState("");
 
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+  };
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
   const handlePassword = (e) => {
     setPasword(e.target.value);
   };
-
+  const handleReenterPassword = (e) => {
+    setRenterPassword(e.target.value);
+  };
   const handleSummit = (e) => {
     e.preventDefault();
 
     dispatch(
-      loginUserAction({
+      signUpUserFirebaseAction({
+        username: userName,
         email: email,
         password: password,
       })
@@ -65,7 +72,13 @@ export default function SignUp() {
         >
           <Alerts />
           <div>
-            <h1>LOGIN</h1>
+            <h1>Sign Up</h1>
+            <TextField
+              style={{ display: "block" }}
+              onChange={(e) => handleUsername(e)}
+              label="Username"
+              variant="standard"
+            />
             <TextField
               style={{ display: "block" }}
               onChange={(e) => handleEmail(e)}
@@ -80,12 +93,18 @@ export default function SignUp() {
               multiline
               variant="standard"
             />
+            <TextField
+              style={{ display: "block" }}
+              onChange={(e) => handleReenterPassword(e)}
+              label="Reenter Password"
+              variant="standard"
+            />
           </div>
           <div>
-            <Button variant="outline" onClick={(e) => handleSummit(e)}>
+            <Button variant="text" onClick={(e) => handleSummit(e)}>
               Registrarte
             </Button>
-            <Link to={"/sign-up"}>Sign Up</Link>
+            <Link to={"/login"}>Login</Link>
           </div>
         </Box>
       )}
