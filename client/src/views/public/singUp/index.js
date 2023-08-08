@@ -10,10 +10,10 @@ import {
   signUpUserFirebaseAction,
 } from "../../../redux/actions/userActions";
 import GetAllUsers from "../../privates/account/Admin/getAllUsers";
-import { Alert } from "@mui/joy";
+
 import Alerts from "../../../components/alerts";
 import { redirect } from "react-router-dom";
-import { Loader } from "three";
+
 import Loading from "../../../components/loading/lindex";
 export default function SignUp() {
   const navigate = useNavigate();
