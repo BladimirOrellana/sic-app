@@ -62,7 +62,6 @@ export function* handlerRegisterUserWithEmail({ data }) {
 }
 
 export function* handlerLoginUser(data) {
-  yield put(authUserAction({ loading: true }));
   console.log("login user handler ", data.data);
   try {
     const user = yield call(requestLoginUser, data.data);
@@ -78,7 +77,10 @@ export function* handlerLoginUser(data) {
       });
       console.log("local user999999999999900000000000000000 ", userData.data);
       localStorage.setItem("user", JSON.stringify(userData.data));
-      yield put(authUserAction(userData.data));
+      // yield put(setAuthUserAction(userData.data));
+      yield put(
+        setAuthUserAction({ currentUser: userData.data, loading: false })
+      );
     }
   } catch (err) {
     console.log("errorloco ", err);

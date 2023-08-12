@@ -30,7 +30,6 @@ function Home() {
               <Button onClick={() => dispatch(logOUTUserAction(auth))}>
                 Logout
               </Button>{" "}
-              <h2>{currentUser.user.currentUser.username}</h2>
             </div>
           ) : (
             <Link to={"/sign-up"}>Register</Link>

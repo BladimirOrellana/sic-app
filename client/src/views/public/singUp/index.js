@@ -28,6 +28,8 @@ export default function SignUp() {
   console.log("current 3.uid", currentUser.user.currentUser);
   console.log("current 3.uid", errorMessage);
   const dispatch = useDispatch();
+  const [user, setUser] = useState("");
+
   const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
@@ -62,51 +64,54 @@ export default function SignUp() {
       {currentUser.user.loading === true ? (
         <Loading />
       ) : (
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <Alerts />
-          <div>
-            <h1>Sign Up</h1>
-            <TextField
-              style={{ display: "block" }}
-              onChange={(e) => handleUsername(e)}
-              label="Username"
-              variant="standard"
-            />
-            <TextField
-              style={{ display: "block" }}
-              onChange={(e) => handleEmail(e)}
-              label="Email"
-              variant="standard"
-            />
-            <TextField
-              style={{ display: "block" }}
-              onChange={(e) => handlePassword(e)}
-              label="Password"
-              placeholder="Placeholder"
-              multiline
-              variant="standard"
-            />
-            <TextField
-              style={{ display: "block" }}
-              onChange={(e) => handleReenterPassword(e)}
-              label="Reenter Password"
-              variant="standard"
-            />
-          </div>
-          <div>
-            <Button variant="text" onClick={(e) => handleSummit(e)}>
-              Registrarte
-            </Button>
-            <Link to={"/login"}>Login</Link>
-          </div>
-        </Box>
+        <div>
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <Alerts />
+
+            <div>
+              <h1>Sign Up</h1>
+              <TextField
+                style={{ display: "block" }}
+                onChange={(e) => handleUsername(e)}
+                label="Username"
+                variant="standard"
+              />
+              <TextField
+                style={{ display: "block" }}
+                onChange={(e) => handleEmail(e)}
+                label="Email"
+                variant="standard"
+              />
+              <TextField
+                style={{ display: "block" }}
+                onChange={(e) => handlePassword(e)}
+                label="Password"
+                placeholder="Placeholder"
+                multiline
+                variant="standard"
+              />
+              <TextField
+                style={{ display: "block" }}
+                onChange={(e) => handleReenterPassword(e)}
+                label="Reenter Password"
+                variant="standard"
+              />
+            </div>
+            <div>
+              <Button variant="text" onClick={(e) => handleSummit(e)}>
+                Registrarte
+              </Button>
+              <Link to={"/login"}>Login</Link>
+            </div>
+          </Box>
+        </div>
       )}
     </div>
   );

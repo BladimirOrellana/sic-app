@@ -6,7 +6,7 @@ import {
 } from "../constants";
 
 const initState = {
-  loading: false,
+  loading: true,
   currentUser: null,
   error: null,
 };
@@ -17,15 +17,16 @@ export const authUserReducer = (state = initState, action) => {
       console.log("888888888888888888888 3332222222222", action);
       return {
         ...state,
-
-        loading: true,
+        loading: action.loading,
       };
     case SET_AUTH_USER:
       console.log("authuser reducer 2 ", action);
+      console.log("authuser reducer 22 ", action.currentUser);
+      console.log("authuser reducer 23 ", action.loading);
       return {
         ...state,
         currentUser: action.currentUser,
-        loading: false,
+        loading: action.loading,
       };
     case LOG_OUT_USER:
       console.log("logout reducer 1", action.data);

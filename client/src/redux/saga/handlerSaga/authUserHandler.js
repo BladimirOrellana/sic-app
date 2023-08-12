@@ -11,10 +11,15 @@ import { requestLogoutUser } from "../RequestSaga/authRequestSaga";
 export function* handlerAuthUser() {
   try {
     const currentUser = localStorage.getItem("user");
-    console.log("handler auth ", JSON.parse(currentUser));
+    console.log("handler auth 232323", JSON.parse(currentUser));
 
-    yield put(setAuthUserAction(JSON.parse(currentUser)));
+    yield put(setAuthUserAction({ currentUser: currentUser, loading: false }));
+    //Continue fixing login and sign up error display Loading
+    // yield put(
+    //   setAuthUserAction(JSON.parse({ currentUser: currentUser, loading: true }))
+    // );
   } catch (err) {
+    yield put(setAuthUserAction({ currentUser: null, loading: false }));
     return err;
   }
 }

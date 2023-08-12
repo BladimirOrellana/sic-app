@@ -5,6 +5,7 @@ import Login from "./views/public/login";
 import NoFound from "./views/public/noFound/noFound";
 import SignUp from "./views/public/singUp";
 import Dashboard from "./views/privates/account/Admin";
+import Perfil from "./views/privates/account/perfil";
 
 function MainApp() {
   return (
@@ -13,6 +14,7 @@ function MainApp() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="*" element={<NoFound />} />
 
         <Route path="/sign-up" element={<SignUp />} />

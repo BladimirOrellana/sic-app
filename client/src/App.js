@@ -16,15 +16,20 @@ function App() {
   const dispach = useDispatch();
 
   onAuthStateChanged(auth, (user) => {
-    dispach(authUserAction({ loading: true }));
+    dispach(setAuthUserAction({ currentUser: null, loading: true }));
     if (user) {
       const currentUser = localStorage.getItem("user");
 
-      dispach(authUserAction(currentUser));
+      dispach(
+        setAuthUserAction({
+          currentUser: JSON.parse(currentUser),
+          loading: false,
+        })
+      );
       console.log("user exist");
     } else {
       console.log("user does no exist");
-      dispach(authUserAction(null));
+      dispach(setAuthUserAction({ currentUser: null, loading: false }));
     }
   });
 

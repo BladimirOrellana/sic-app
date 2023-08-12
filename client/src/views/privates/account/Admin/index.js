@@ -18,7 +18,6 @@ function Dashboard() {
       <h1>DASHBORD</h1>
       <div>
         <h4>All Users</h4>
-        <GetAllUsers />
       </div>
     </div>
   );

@@ -9,16 +9,16 @@ export const authUserAction = (data) => {
   console.log("authuser   action init 9999999", data);
   return {
     type: AUTH_USER,
-    loading: true,
+    loading: data.loading,
   };
 };
 
 export const setAuthUserAction = (data) => {
-  console.log("authuser  action set 21", data);
+  console.log("authUser 10101010101000======================", data);
   return {
     type: SET_AUTH_USER,
-    currentUser: data,
-    loading: false,
+    currentUser: data.currentUser,
+    loading: data.loading,
   };
 };
 export const logOUTUserAction = (data) => {
