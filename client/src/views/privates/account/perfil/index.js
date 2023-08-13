@@ -6,6 +6,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import Loading from "../../../../components/loading/lindex";
 import { logOutUserAction } from "../../../../redux/actions/authUserActions";
 import { auth } from "./../../../../firebase/firebase";
+import CreateTandaModal from "../../../../components/createTandaModal";
 export default function Perfil() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state);
@@ -23,6 +24,7 @@ export default function Perfil() {
               <Button onClick={() => dispatch(logOutUserAction(auth))}>
                 Logout
               </Button>{" "}
+              <CreateTandaModal />
             </div>
           ) : (
             <Navigate replace to={"/login"} />
