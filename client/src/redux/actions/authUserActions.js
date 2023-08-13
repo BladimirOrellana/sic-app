@@ -21,7 +21,7 @@ export const setAuthUserAction = (data) => {
     loading: data.loading,
   };
 };
-export const logOUTUserAction = (data) => {
+export const logOutUserAction = (data) => {
   console.log("LOG OUT");
   return {
     type: LOG_OUT_USER,

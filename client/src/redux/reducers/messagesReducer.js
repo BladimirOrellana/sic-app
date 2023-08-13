@@ -2,7 +2,7 @@ import { ERROR_MESSAGE, SET_ERROR_MESSAGE } from "../constants";
 
 const initState = {
   loading: false,
-
+  currentUser: null,
   error: null,
 };
 

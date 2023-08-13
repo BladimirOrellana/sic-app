@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 
 import {
   loginUserAction,
@@ -21,11 +21,8 @@ export default function SignUp() {
 
   const currentUser = useSelector((state) => state);
 
-  if (currentUser.user.currentUser) {
-    navigate("/");
-  }
-
   console.log("current 3.uid", currentUser.user.currentUser);
+  console.log("current loading", currentUser.user.loading);
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -49,46 +46,49 @@ export default function SignUp() {
       })
     );
   };
-
-  return (
-    <div>
-      {currentUser.user.loading === true ? (
-        <Loading />
-      ) : (
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <Alerts />
-          <div>
-            <h1>LOGIN</h1>
-            <TextField
-              style={{ display: "block" }}
-              onChange={(e) => handleEmail(e)}
-              label="Email"
-              variant="standard"
-            />
-            <TextField
-              style={{ display: "block" }}
-              onChange={(e) => handlePassword(e)}
-              label="Password"
-              placeholder="Placeholder"
-              multiline
-              variant="standard"
-            />
-          </div>
-          <div>
-            <Button variant="outline" onClick={(e) => handleSummit(e)}>
-              Registrarte
-            </Button>
-            <Link to={"/sign-up"}>Sign Up</Link>
-          </div>
-        </Box>
-      )}
-    </div>
-  );
+  if (currentUser.user.currentUser) {
+    return <Navigate replace to="/" />;
+  } else {
+    return (
+      <div>
+        {currentUser.user.loading === true ? (
+          <Loading />
+        ) : (
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <Alerts />
+            <div>
+              <h1>LOGIN</h1>
+              <TextField
+                style={{ display: "block" }}
+                onChange={(e) => handleEmail(e)}
+                label="Email"
+                variant="standard"
+              />
+              <TextField
+                style={{ display: "block" }}
+                onChange={(e) => handlePassword(e)}
+                label="Password"
+                placeholder="Placeholder"
+                multiline
+                variant="standard"
+              />
+            </div>
+            <div>
+              <Button variant="outline" onClick={(e) => handleSummit(e)}>
+                Login
+              </Button>
+              <Link to={"/sign-up"}>Sign Up</Link>
+            </div>
+          </Box>
+        )}
+      </div>
+    );
+  }
 }

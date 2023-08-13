@@ -43,6 +43,7 @@ export function* handlerSignUpUserFirebase(data) {
       localStorage.setItem("user", JSON.stringify(userData.data));
       yield put(authUserAction(userData.data));
     }
+    ation.reload();
   } catch (err) {
     console.log("errorloco ", err);
   }
@@ -66,7 +67,7 @@ export function* handlerLoginUser(data) {
   try {
     const user = yield call(requestLoginUser, data.data);
     if (user.message) {
-      yield put(authUserAction());
+      yield put(setAuthUserAction({ currentUser: null, loading: false }));
       yield put(setErrorMessage(user.message));
     } else {
       console.log("login user handler succes ", user.user);

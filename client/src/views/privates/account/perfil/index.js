@@ -1,25 +1,34 @@
+import { Button } from "@mui/material";
 import SelectInput from "@mui/material/Select/SelectInput";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, Navigate } from "react-router-dom";
+import Loading from "../../../../components/loading/lindex";
+import { logOutUserAction } from "../../../../redux/actions/authUserActions";
+import { auth } from "./../../../../firebase/firebase";
 export default function Perfil() {
-  const navigate = useNavigate();
-  const currentUser = useSelector((state) => (state = { user: state }));
-  console.log("current user ", currentUser.user.user.currentUser);
-  if (currentUser.user.user.currentUser === null) {
-    navigate("/");
-  }
-
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state);
+  console.log("current user perfil", currentUser.user.currentUser);
   return (
     <div>
-      <h1>Perfil</h1>
-      <div>
-        <h3>
-          {currentUser.user.user.currentUser
-            ? currentUser.user.user.currentUser.username
-            : null}
-        </h3>
-      </div>
+      {currentUser.user.loading === true ? (
+        <Loading />
+      ) : (
+        <div>
+          {currentUser.user.currentUser ? (
+            <div>
+              <p>Perfil</p>
+              {currentUser.user.currentUser.username}
+              <Button onClick={() => dispatch(logOutUserAction(auth))}>
+                Logout
+              </Button>{" "}
+            </div>
+          ) : (
+            <Navigate replace to={"/login"} />
+          )}
+        </div>
+      )}
     </div>
   );
 }

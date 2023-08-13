@@ -1,3 +1,4 @@
+import { setAuthUserAction } from "../../actions/authUserActions";
 import userApi from "./../../../api/user";
 import { auth } from "./../../../firebase/firebase";
 import {
@@ -66,6 +67,7 @@ export const requestLoginUserWithEmailAndPassword = async (data) => {
 
 export const requestLoginUser = async (data) => {
   console.log("data from request ", data);
+
   const firebaseData = await signInWithEmailAndPassword(
     auth,
     data.email,
@@ -98,8 +100,12 @@ export const requestLoginUser = async (data) => {
           return {
             message: "Your Password Is Wrong",
           };
+        case "auth/network-request-failed":
+          return {
+            message: "Please Check Your Internet Connection",
+          };
         default:
-          return error.message;
+          return error;
       }
     });
   return firebaseData;

@@ -3,6 +3,7 @@ import {
   SET_AUTH_USER,
   LOG_OUT_USER,
   SET_LOG_OUT_USER,
+  SET_ERROR_MESSAGE,
 } from "../constants";
 
 const initState = {
@@ -12,7 +13,15 @@ const initState = {
 };
 export const authUserReducer = (state = initState, action) => {
   console.log("authuser reducer  from action", action);
+  console.log("MESSAGE ERROR ===============> ", action.message);
+  SET_ERROR_MESSAGE;
   switch (action.type) {
+    case SET_ERROR_MESSAGE:
+      console.log("MESSAGE ERROR ===============> 2", action.message);
+      return {
+        ...state,
+        loading: false,
+      };
     case AUTH_USER:
       console.log("888888888888888888888 3332222222222", action);
       return {
@@ -23,6 +32,7 @@ export const authUserReducer = (state = initState, action) => {
       console.log("authuser reducer 2 ", action);
       console.log("authuser reducer 22 ", action.currentUser);
       console.log("authuser reducer 23 ", action.loading);
+
       return {
         ...state,
         currentUser: action.currentUser,

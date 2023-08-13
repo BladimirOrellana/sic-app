@@ -16,7 +16,7 @@ function App() {
   const dispach = useDispatch();
 
   onAuthStateChanged(auth, (user) => {
-    dispach(setAuthUserAction({ currentUser: null, loading: true }));
+    // dispach(setAuthUserAction({ currentUser: null, loading: true }));
     if (user) {
       const currentUser = localStorage.getItem("user");
 

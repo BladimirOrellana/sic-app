@@ -10,30 +10,27 @@ import { Button } from "@mui/material";
 import GetAllUsers from "../../privates/account/Admin/getAllUsers";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpUserFirebaseAction } from "../../../redux/actions/userActions";
-import { logOUTUserAction } from "../../../redux/actions/authUserActions";
+import { logOutUserAction } from "../../../redux/actions/authUserActions";
 import Loading from "../../../components/loading/lindex";
 function Home() {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state);
   console.log("home user", currentUser.user.currentUser);
   console.log("home loading", currentUser.user.loading);
   return (
     <div>
-      <p>Home</p>
       {currentUser.user.loading === true ? (
         <Loading />
       ) : (
         <div>
-          {currentUser.user.currentUser ? (
-            <div>
-              {" "}
-              <Button onClick={() => dispatch(logOUTUserAction(auth))}>
-                Logout
-              </Button>{" "}
-            </div>
-          ) : (
-            <Link to={"/sign-up"}>Register</Link>
-          )}
+          <p>Home</p>
+          <p>
+            Welcome{" "}
+            {currentUser.user.currentUser ? (
+              currentUser.user.currentUser.username
+            ) : (
+              <Link to={"/login"}>Entrar O Crear Cuenta</Link>
+            )}
+          </p>
         </div>
       )}
     </div>
