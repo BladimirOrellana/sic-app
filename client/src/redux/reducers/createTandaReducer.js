@@ -12,7 +12,6 @@ const initState = {
 };
 
 export const createTandaReducer = (state = initState, action) => {
-  console.log("create tanda reducer ", action.data);
   switch (action.type) {
     case CREATE_TANDA:
       return {

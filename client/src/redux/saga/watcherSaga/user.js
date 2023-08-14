@@ -14,20 +14,16 @@ import {
   handlerSignUpUserFirebase,
 } from "../handlerSaga/user";
 export function* userWatcherSaga() {
-  console.log("get all users watcher ");
   yield takeLatest(GET_ALL_USERS, handlerGetAllUsers);
 }
 export function* registerUserWithEmailWatcher() {
-  console.log("get all users watcher register");
   yield takeLatest(REGISTER_USER_WITH_EMAIL, handlerRegisterUserWithEmail);
 }
 
 export function* signUpUserFirebaseWatcher() {
-  console.log("sign up user firebase watcher");
   yield takeLatest(SIGN_UP_USER_FIREBASE, handlerSignUpUserFirebase);
 }
 export function* loginUserWatcher() {
-  console.log("sign up user firebase watcher");
   yield takeLatest(LOGIN_USER, handlerLoginUser);
 }
 

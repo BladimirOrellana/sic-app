@@ -8,7 +8,7 @@ import { useNavigate, Link, Navigate } from "react-router-dom";
 import {
   loginUserAction,
   registerUserWithEmailAction,
-  signUpUserFirebaseAction,
+  LoginUserFirebaseAction,
 } from "../../../redux/actions/userActions";
 import GetAllUsers from "../../privates/account/Admin/getAllUsers";
 
@@ -16,13 +16,12 @@ import Alerts from "../../../components/alerts";
 import { redirect } from "react-router-dom";
 
 import Loading from "../../../components/loading/lindex";
-export default function SignUp() {
+export default function Login() {
   const navigate = useNavigate();
 
-  const currentUser = useSelector((state) => state);
+  const user = useSelector((state) => state.user.currentUser);
+  const loading = useSelector((state) => state.user.loading);
 
-  console.log("current 3.uid", currentUser.user.currentUser);
-  console.log("current loading", currentUser.user.loading);
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -46,12 +45,12 @@ export default function SignUp() {
       })
     );
   };
-  if (currentUser.user.currentUser) {
+  if (user) {
     return <Navigate replace to="/" />;
   } else {
     return (
       <div>
-        {currentUser.user.loading === true ? (
+        {loading === true ? (
           <Loading />
         ) : (
           <Box

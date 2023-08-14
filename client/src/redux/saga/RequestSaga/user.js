@@ -46,7 +46,6 @@ export const requestGetAllUsers = async () => {
     .catch((error) => error);
 };
 export const requestRegisterUserWithEmail = async (data) => {
-  console.log("create user ", data);
   return await userApi
     .create(data)
     .then((User) => User)
@@ -56,11 +55,9 @@ export const requestLoginUserWithEmailAndPassword = async (data) => {
   return await userApi
     .findByUid(data)
     .then((User) => {
-      console.log("login user call request success ", User);
       return User;
     })
     .catch((error) => {
-      console.log("login user call request error ", error);
       return error;
     });
 };

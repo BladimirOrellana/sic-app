@@ -11,22 +11,22 @@ import Tandas from "../../../../components/getTandas";
 import GetTandasCreatedBy from "../../../../components/getTandas/getTandasCreatedBy";
 export default function Perfil() {
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state);
-  console.log("current user perfil", currentUser.user.currentUser);
+  const user = useSelector((state) => state.user.currentUser);
+  const loading = useSelector((state) => state.user.loading);
   return (
     <div>
-      {currentUser.user.loading === true ? (
+      {loading === true ? (
         <Loading />
       ) : (
         <div>
-          {currentUser.user.currentUser ? (
+          {user ? (
             <div>
               <p>Perfil</p>
-              {currentUser.user.currentUser.username}
+              {user.username}
               <CreateTandaModal />
               <div>
                 <h1>Mis tandas </h1>
-                {/* <GetTandasCreatedBy />*/}
+                <GetTandasCreatedBy />
                 {}
               </div>
               <Button onClick={() => dispatch(logOutUserAction(auth))}>

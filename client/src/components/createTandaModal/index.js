@@ -29,8 +29,7 @@ export default function CreateTandaModal() {
   const [pricePerNumber, setPricePerNumber] = useState(null);
 
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state);
-  console.log("current user perfil", currentUser.user.currentUser);
+  const user = useSelector((state) => state.user.currentUser);
 
   const handleSumit = () => {
     if (tandaName === null) {
@@ -38,7 +37,7 @@ export default function CreateTandaModal() {
     } else {
       const data = {
         tandaName: tandaName,
-        createdBy: currentUser.user.currentUser._id,
+        createdBy: user._id,
         numberOfWeeks: numberOfWeeks,
         pricePerNumber: pricePerNumber,
 

@@ -21,34 +21,21 @@ export const userReducer = (state = initState, action) => {
     case GET_ALL_USERS:
       return { ...state };
     case SET_GET_ALL_USERS:
-      console.log("reducer user", action);
       return { ...state, user: action.data };
 
     case REGISTER_USER_WITH_EMAIL:
-      console.log("gegister user data", action.data);
       return { ...state, data: action.data };
     case SET_REGISTER_USER_WITH_EMAIL:
-      console.log("gegister user", action.data);
-
       return { ...state, data: action.data };
     case SIGN_UP_USER_FIREBASE:
-      console.log("gegister user data", action.data);
       return { ...state, data: action.data };
     case SET_SIGN_UP_USER_FIREBASE:
-      console.log("gegister user", action.data);
-
       return { ...state, data: action.data };
     case LOG_OUT_USER:
-      console.log("login user reducer user", action.data);
-
       return { ...state, data: action.data };
     case LOGIN_USER:
-      console.log("login user reducer user=================", action.data);
-
       return { ...state, data: action.data };
     case SET_LOGIN_USER:
-      console.log("login user reducer user", action.data);
-
       return { ...state, data: action.data, loading: false };
 
     default:

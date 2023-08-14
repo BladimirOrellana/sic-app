@@ -3,7 +3,6 @@ import { ERROR_MESSAGE } from "../../constants";
 import { handlerErrorMessage } from "../handlerSaga/handlerMessageSaga";
 
 export function* errorMessageWatcher() {
-  console.log("erro message watcher ");
   yield takeLatest(ERROR_MESSAGE, handlerErrorMessage);
 }
 

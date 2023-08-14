@@ -15,23 +15,14 @@ import { getTandaCreatedbyAction } from "../../redux/actions/createTandaAction";
 export default function GetTandasCreatedBy() {
   dayjs.extend(relativeTime);
   const dispatch = useDispatch();
-  const currentUser = useSelector((state) => state);
-  const tandasData = useSelector((state) => state);
+  const user = useSelector((state) => state.user.currentUser);
+  const loading = useSelector((state) => state.user.loading);
+  const tandasData = useSelector((state) => state.tandas.tanda);
   const [tanda, setTanda] = useState([]);
-  const [loading, setLoading] = useState(false);
-  console.log("current user mis tandas now9999", currentUser.user.currentUser);
-  console.log(
-    "current user mis tandas tanda888",
-    tandasData.tandas.tanda.length
-  );
-  console.log("current user mis tandas ==================23", tandasData);
-  console.log("current user mis tandas ==================24", tandasData);
-
-  const id = currentUser.user.currentUser._id;
 
   useEffect(() => {}, []);
 
-  const tandas = tandasData.tandas.tanda.map((tanda) => {
+  const tandas = tandasData.map((tanda) => {
     return (
       <Fragment>
         <CardContent>
@@ -71,7 +62,7 @@ export default function GetTandasCreatedBy() {
         <Loading />
       ) : (
         <div>
-          {tandasData.tandas.tanda.length === 0 ? (
+          {tandasData.length === 0 ? (
             "No tandas"
           ) : (
             <Box sx={{ minWidth: 275 }}>

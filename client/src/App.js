@@ -26,9 +26,7 @@ function App() {
           loading: false,
         })
       );
-      console.log("user exist");
     } else {
-      console.log("user does no exist");
       dispach(setAuthUserAction({ currentUser: null, loading: false }));
     }
   });

@@ -29,7 +29,6 @@ export function* handlerGetAllUsers() {
   } catch (err) {}
 }
 export function* handlerSignUpUserFirebase(data) {
-  console.log("data from user signUp ", data.data);
   try {
     if (data.data.password === data.data.reEnterPassword) {
       const user = yield call(requestSignUpUserFirebase, data);
@@ -51,9 +50,7 @@ export function* handlerSignUpUserFirebase(data) {
     } else {
       yield put(setErrorMessage("Tu password No conside "));
     }
-  } catch (err) {
-    console.log("errorloco ", err);
-  }
+  } catch (err) {}
 }
 
 export function* handlerRegisterUserWithEmail({ data }) {

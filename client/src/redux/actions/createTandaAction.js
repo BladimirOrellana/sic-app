@@ -13,7 +13,6 @@ export const createTandaAction = (data) => {
   };
 };
 export const setCreateTandaAction = (data) => {
-  console.log("authuser   action init 9999999", data);
   return {
     type: SET_CREATE_TANDA,
     data,
@@ -21,14 +20,12 @@ export const setCreateTandaAction = (data) => {
 };
 
 export const getTandaCreatedbyAction = (data) => {
-  console.log("authuser   action init 9999999", data);
   return {
     type: GET_TANDA_CREATEDBY,
     data,
   };
 };
 export const setGetTandaCreatedbyAction = (data) => {
-  console.log("authuser   action init 9999999", data);
   return {
     type: SET_GET_TANDA_CREATEDBY,
     data,

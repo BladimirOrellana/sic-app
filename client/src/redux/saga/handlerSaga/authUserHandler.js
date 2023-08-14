@@ -9,10 +9,8 @@ import { useDispatch } from "react-redux";
 import { logOUTUserAction } from "../../actions/userActions";
 import { requestLogoutUser } from "../RequestSaga/authRequestSaga";
 export function* handlerAuthUser(data) {
-  console.log("handler auth 1", data);
   try {
     const currentUser = localStorage.getItem("user");
-    console.log("handler auth 232323", JSON.parse(currentUser));
 
     yield put(setAuthUserAction({ currentUser: currentUser, loading: false }));
     //Continue fixing login and sign up error display Loading
@@ -28,11 +26,8 @@ export function* handlerAuthUser(data) {
 //logout
 export function* handlerLogOutUser({ data }) {
   try {
-    console.log("logout user handler", data);
     const currentUser = yield call(requestLogoutUser, data);
-    console.log("current user handler call back", currentUser);
+
     yield put(setAuthUserAction(null));
-  } catch (err) {
-    console.log("err ", err);
-  }
+  } catch (err) {}
 }

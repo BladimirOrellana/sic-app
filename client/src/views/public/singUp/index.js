@@ -17,12 +17,11 @@ import { redirect } from "react-router-dom";
 import Loading from "../../../components/loading/lindex";
 export default function SignUp() {
   const navigate = useNavigate();
+  const userAuth = useSelector((state) => state.user.currentUser);
+  const loading = useSelector((state) => state.user.loading);
 
-  const currentUser = useSelector((state) => state);
-  const errorMessage = useSelector((state) => state);
+  console.log("current 3.uid", userAuth);
 
-  console.log("current 3.uid", currentUser.user.currentUser);
-  console.log("current 3.uid", errorMessage);
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
 
@@ -55,12 +54,12 @@ export default function SignUp() {
       })
     );
   };
-  if (currentUser.user.currentUser) {
+  if (userAuth) {
     return <Navigate replace to="/" />;
   } else {
     return (
       <div>
-        {currentUser.user.loading === true ? (
+        {loading === true ? (
           <Loading />
         ) : (
           <div>

@@ -57,7 +57,6 @@ export const signUpUserFirebaseAction = (data) => {
   //this send data coming from this addToCart action
   //below we will sent the data receive from addtocart to reducer
 
-  console.log("action called register", data);
   return {
     type: SIGN_UP_USER_FIREBASE,
     data,
@@ -68,7 +67,6 @@ export const SetSignUpUserFirebaseAction = (data) => {
   //this send data coming from this addToCart action
   //below we will sent the data receive from addtocart to reducer
 
-  console.log("create user ", data);
   return {
     type: SET_SIGN_UP_USER_FIREBASE,
     payload: data.data,
@@ -79,7 +77,6 @@ export const loginUserAction = (data) => {
   //this send data coming from this addToCart action
   //below we will sent the data receive from addtocart to reducer
 
-  console.log("login user ", data);
   return {
     type: LOGIN_USER,
     data,
@@ -90,7 +87,6 @@ export const setLoginUserAction = (data) => {
   //this send data coming from this addToCart action
   //below we will sent the data receive from addtocart to reducer
 
-  console.log("login user ", data);
   return {
     type: SET_LOGIN_USER,
     payload: data.data,

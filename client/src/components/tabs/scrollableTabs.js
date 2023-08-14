@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function ScrollableTabs() {
-  const currentUser = useSelector((state) => state);
+  const user = useSelector((state) => state.user.currentUser);
   const [value, setValue] = React.useState(0);
-  console.log("tab user", currentUser.user.currentUser);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper" }}>
+    <Box>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -36,7 +36,7 @@ export default function ScrollableTabs() {
           <Tab label="Black List" />
         </Link>
 
-        {currentUser.user.currentUser ? (
+        {user ? (
           <div>
             {" "}
             <Link to={"/perfil"}>

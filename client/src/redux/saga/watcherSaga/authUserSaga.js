@@ -6,12 +6,10 @@ import {
 } from "../handlerSaga/authUserHandler";
 
 export function* authUserWatcher() {
-  console.log("auth  watcher 232323");
   yield takeLatest(AUTH_USER, handlerAuthUser);
 }
 
 export function* logOutUserWatcher() {
-  console.log("Log out watcher");
   yield takeLatest(LOG_OUT_USER, handlerLogOutUser);
 }
 export default function* authUserSaga() {
