@@ -29,21 +29,28 @@ export function* handlerGetAllUsers() {
   } catch (err) {}
 }
 export function* handlerSignUpUserFirebase(data) {
+  console.log("data from user signUp ", data.data);
   try {
-    const user = yield call(requestSignUpUserFirebase, data);
-    if (user.message) {
-      yield put(setErrorMessage(user.message));
+    if (data.data.password === data.data.reEnterPassword) {
+      const user = yield call(requestSignUpUserFirebase, data);
+      if (user.message) {
+        yield put(setErrorMessage(user.message));
+      } else {
+        const userData = yield requestRegisterUserWithEmail({
+          email: user.user.email,
+          uid: user.user.uid,
+          username: data.data.username,
+        });
+
+        localStorage.setItem("user", JSON.stringify(userData.data));
+
+        yield put(
+          setAuthUserAction({ currentUser: userData.data, loading: false })
+        );
+      }
     } else {
-      const userData = yield requestRegisterUserWithEmail({
-        email: user.user.email,
-        uid: user.user.uid,
-        username: data.data.username,
-      });
-      console.log("local user999999999999900000000000000000 ", userData);
-      localStorage.setItem("user", JSON.stringify(userData.data));
-      yield put(authUserAction(userData.data));
+      yield put(setErrorMessage("Tu password No conside "));
     }
-    ation.reload();
   } catch (err) {
     console.log("errorloco ", err);
   }
@@ -63,22 +70,18 @@ export function* handlerRegisterUserWithEmail({ data }) {
 }
 
 export function* handlerLoginUser(data) {
-  console.log("login user handler ", data.data);
   try {
     const user = yield call(requestLoginUser, data.data);
     if (user.message) {
       yield put(setAuthUserAction({ currentUser: null, loading: false }));
       yield put(setErrorMessage(user.message));
     } else {
-      console.log("login user handler succes ", user.user);
-
-      console.log("user data data", data);
       const userData = yield requestLoginUserWithEmailAndPassword({
         uid: user.user.uid,
       });
-      console.log("local user999999999999900000000000000000 ", userData.data);
+
       localStorage.setItem("user", JSON.stringify(userData.data));
-      // yield put(setAuthUserAction(userData.data));
+
       yield put(
         setAuthUserAction({ currentUser: userData.data, loading: false })
       );

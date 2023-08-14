@@ -14,7 +14,7 @@ export default function ScrollableTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+    <Box sx={{ bgcolor: "background.paper" }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -41,9 +41,6 @@ export default function ScrollableTabs() {
             {" "}
             <Link to={"/perfil"}>
               <Tab label="Perfil" />
-            </Link>
-            <Link onClick={() => alert("out")}>
-              <Tab label="LogOut" />
             </Link>
           </div>
         ) : (

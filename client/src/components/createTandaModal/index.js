@@ -1,10 +1,12 @@
-import * as React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
+import ApiTanda from "./../../api/tanda";
 import TextField from "@mui/material/TextField";
+import { createTandaAction } from "../../redux/actions/createTandaAction";
 const style = {
   position: "absolute",
   top: "50%",
@@ -18,10 +20,33 @@ const style = {
 };
 
 export default function CreateTandaModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [tandaName, setTandaname] = useState(null);
+  const [numberOfWeeks, setNumberOfWeeks] = useState(null);
+  const [pricePerNumber, setPricePerNumber] = useState(null);
 
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state);
+  console.log("current user perfil", currentUser.user.currentUser);
+
+  const handleSumit = () => {
+    if (tandaName === null) {
+      setMessage("Porfavor escrive el nombre para la tanda.");
+    } else {
+      const data = {
+        tandaName: tandaName,
+        createdBy: currentUser.user.currentUser._id,
+        numberOfWeeks: numberOfWeeks,
+        pricePerNumber: pricePerNumber,
+
+        createdAt: Date.now(),
+      };
+      dispatch(createTandaAction(data));
+    }
+  };
   return (
     <div>
       <Button onClick={handleOpen}>Create Tanda</Button>
@@ -33,24 +58,53 @@ export default function CreateTandaModal() {
       >
         <Box sx={style}>
           <Box>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Create Tanda
-            </Typography>
+            {message}
+            <div style={{ textAlign: "center" }}>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Create Tanda
+              </Typography>
+            </div>
           </Box>
           <Box component="form" noValidate autoComplete="off">
             <TextField
+              style={styles.margingTop}
+              onChange={(e) => setTandaname(e.target.value)}
               fullWidth
               type="text"
               label="Nombre De La Tanda"
               placeholder="Tu Nombre, etc..."
               variant="outlined"
             />
-            <Button style={{ marginTop: 5 }} fullWidth variant="outlined">
+            <TextField
+              style={styles.marginTop}
+              onChange={(e) => setNumberOfWeeks(e.target.value)}
+              fullWidth
+              type="number"
+              label="cuantas semanas?"
+              placeholder="Duracion en semanas "
+              variant="outlined"
+            />
+
+            <TextField
+              style={styles.marginTop}
+              onChange={(e) => setPricePerNumber(e.target.value)}
+              fullWidth
+              type="number"
+              label="Valor del numero"
+              placeholder="$"
+              variant="outlined"
+            />
+            <Button
+              onClick={() => handleSumit()}
+              style={styles.marginTop}
+              fullWidth
+              variant="outlined"
+            >
               Crear
             </Button>
             <Button
-              onClick={() => setOpen(false)}
-              style={{ marginTop: 5 }}
+              onClick={handleClose}
+              style={styles.marginTop}
               variant="text"
             >
               Cancelar
@@ -61,3 +115,10 @@ export default function CreateTandaModal() {
     </div>
   );
 }
+
+//NOTES CONTINUE ADDING REDUX SAGA TO CREATE TANDA
+const styles = {
+  marginTop: {
+    marginTop: 5,
+  },
+};

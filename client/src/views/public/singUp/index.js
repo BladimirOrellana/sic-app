@@ -51,6 +51,7 @@ export default function SignUp() {
         username: userName,
         email: email,
         password: password,
+        reEnterPassword: reEnterPassword,
       })
     );
   };

@@ -8,7 +8,8 @@ import {
 import { useDispatch } from "react-redux";
 import { logOUTUserAction } from "../../actions/userActions";
 import { requestLogoutUser } from "../RequestSaga/authRequestSaga";
-export function* handlerAuthUser() {
+export function* handlerAuthUser(data) {
+  console.log("handler auth 1", data);
   try {
     const currentUser = localStorage.getItem("user");
     console.log("handler auth 232323", JSON.parse(currentUser));

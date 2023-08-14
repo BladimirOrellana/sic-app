@@ -7,6 +7,8 @@ import Loading from "../../../../components/loading/lindex";
 import { logOutUserAction } from "../../../../redux/actions/authUserActions";
 import { auth } from "./../../../../firebase/firebase";
 import CreateTandaModal from "../../../../components/createTandaModal";
+import Tandas from "../../../../components/getTandas";
+import GetTandasCreatedBy from "../../../../components/getTandas/getTandasCreatedBy";
 export default function Perfil() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state);
@@ -21,10 +23,15 @@ export default function Perfil() {
             <div>
               <p>Perfil</p>
               {currentUser.user.currentUser.username}
+              <CreateTandaModal />
+              <div>
+                <h1>Mis tandas </h1>
+                {/* <GetTandasCreatedBy />*/}
+                {}
+              </div>
               <Button onClick={() => dispatch(logOutUserAction(auth))}>
                 Logout
               </Button>{" "}
-              <CreateTandaModal />
             </div>
           ) : (
             <Navigate replace to={"/login"} />
