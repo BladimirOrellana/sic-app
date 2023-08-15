@@ -26,8 +26,8 @@ export function* handlerAuthUser(data) {
 //logout
 export function* handlerLogOutUser({ data }) {
   try {
-    const currentUser = yield call(requestLogoutUser, data);
+    yield call(requestLogoutUser, data);
 
-    yield put(setAuthUserAction(null));
+    yield put(setAuthUserAction({ currentUser: null, loading: false }));
   } catch (err) {}
 }

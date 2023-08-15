@@ -6,30 +6,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import Home from "./views/public/home";
 import MainApp from "./mainApp";
-import {
-  setAuthUserAction,
-  authUserAction,
-} from "./redux/actions/authUserActions";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const dispach = useDispatch();
-
-  onAuthStateChanged(auth, (user) => {
-    // dispach(setAuthUserAction({ currentUser: null, loading: true }));
-    if (user) {
-      const currentUser = localStorage.getItem("user");
-
-      dispach(
-        setAuthUserAction({
-          currentUser: JSON.parse(currentUser),
-          loading: false,
-        })
-      );
-    } else {
-      dispach(setAuthUserAction({ currentUser: null, loading: false }));
-    }
-  });
 
   return (
     <div className="App">

@@ -22,7 +22,7 @@ export const authUserReducer = (state = initState, action) => {
     case AUTH_USER:
       return {
         ...state,
-        loading: action.loading,
+        loading: false,
       };
     case SET_AUTH_USER:
       return {

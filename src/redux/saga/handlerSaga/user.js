@@ -70,6 +70,7 @@ export function* handlerLoginUser(data) {
   try {
     const user = yield call(requestLoginUser, data.data);
     if (user.message) {
+      console.log("user request login  handler message  ", user.message);
       yield put(setAuthUserAction({ currentUser: null, loading: false }));
       yield put(setErrorMessage(user.message));
     } else {

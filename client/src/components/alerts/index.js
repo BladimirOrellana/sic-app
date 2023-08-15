@@ -27,7 +27,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Alerts() {
-  const message = useSelector((state) => state.messages.message);
+  const message = useSelector((state) => state.auth.error);
 
   return (
     <div>

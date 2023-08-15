@@ -4,9 +4,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import ApiTanda from "./../../api/tanda";
+import ApiTanda from "../../api/tanda";
 import TextField from "@mui/material/TextField";
-import { createTandaAction } from "../../redux/actions/createTandaAction";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,9 +29,9 @@ export default function CreateTandaModal() {
   const [pricePerNumber, setPricePerNumber] = useState(null);
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.currentUser);
 
-  const handleSumit = () => {
+  const handleSumit = (e) => {
+    e.preventDefault();
     if (tandaName === null) {
       setMessage("Porfavor escrive el nombre para la tanda.");
     } else {
@@ -43,7 +43,8 @@ export default function CreateTandaModal() {
 
         createdAt: Date.now(),
       };
-      dispatch(createTandaAction(data));
+
+      handleClose();
     }
   };
   return (
@@ -94,7 +95,7 @@ export default function CreateTandaModal() {
               variant="outlined"
             />
             <Button
-              onClick={() => handleSumit()}
+              onClick={(e) => handleSumit(e)}
               style={styles.marginTop}
               fullWidth
               variant="outlined"

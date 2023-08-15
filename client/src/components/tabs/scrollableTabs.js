@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function ScrollableTabs() {
-  const user = useSelector((state) => state.user.currentUser);
+  const User = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -36,7 +37,7 @@ export default function ScrollableTabs() {
           <Tab label="Black List" />
         </Link>
 
-        {user ? (
+        {User ? (
           <div>
             {" "}
             <Link to={"/perfil"}>

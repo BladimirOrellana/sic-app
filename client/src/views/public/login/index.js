@@ -5,13 +5,6 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 
-import {
-  loginUserAction,
-  registerUserWithEmailAction,
-  LoginUserFirebaseAction,
-} from "../../../redux/actions/userActions";
-import GetAllUsers from "../../privates/account/Admin/getAllUsers";
-
 import Alerts from "../../../components/alerts";
 import { redirect } from "react-router-dom";
 
@@ -19,11 +12,9 @@ import Loading from "../../../components/loading/lindex";
 export default function Login() {
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user.currentUser);
-  const loading = useSelector((state) => state.user.loading);
-
   const dispatch = useDispatch();
-
+  const User = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
   const [reEnterPassword, setRenterPassword] = useState("");
@@ -36,17 +27,14 @@ export default function Login() {
   };
 
   const handleSummit = (e) => {
+    const data = {
+      email: email,
+      password: password,
+    };
     e.preventDefault();
-
-    dispatch(
-      loginUserAction({
-        email: email,
-        password: password,
-      })
-    );
   };
-  if (user) {
-    return <Navigate replace to="/" />;
+  if (User) {
+    return <Navigate replace to="/perfil" />;
   } else {
     return (
       <div>

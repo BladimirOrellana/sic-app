@@ -14,9 +14,9 @@ export function* handlerCreateTanda(data) {
   try {
     const tanda = yield call(requestCreateTanda, data);
 
+    yield put(setCreateTandaAction({ tanda: tanda.data }));
     const currentUser = localStorage.getItem("user");
 
-    yield put(setCreateTandaAction({ tanda: tanda.data }));
     yield put(
       setAuthUserAction({
         currentUser: JSON.parse(currentUser),
@@ -31,8 +31,15 @@ export function* handlerCreateTanda(data) {
 export function* handlerGetTandaCreatedby(data) {
   try {
     const tandaBy = yield call(requestGetTandaCreatedby, data);
-
     yield put(setGetTandaCreatedbyAction(tandaBy.data));
+    const currentUser = localStorage.getItem("user");
+
+    yield put(
+      setAuthUserAction({
+        currentUser: JSON.parse(currentUser),
+        loading: false,
+      })
+    );
   } catch (err) {
     return err;
   }

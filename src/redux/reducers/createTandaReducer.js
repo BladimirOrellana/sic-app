@@ -7,29 +7,21 @@ import {
   SET_GET_TANDA_CREATEDBY,
 } from "../constants";
 
-const initState = {
-  tanda: [],
-};
+const initState = { tanda: [], tandaCreatedBy: [] };
 
 export const createTandaReducer = (state = initState, action) => {
   switch (action.type) {
-    case CREATE_TANDA:
-      return {
-        ...state,
-      };
     case SET_CREATE_TANDA:
       return {
         ...state,
-        tanda: action.data,
+        tanda: [...state.tanda, action.data],
       };
-    case GET_TANDA_CREATEDBY:
-      return {
-        ...state,
-      };
+
     case SET_GET_TANDA_CREATEDBY:
+      console.log("set tanda created by reducer", action);
       return {
         ...state,
-        tanda: action.data,
+        tandaCreatedBy: [...state.tandaCreatedBy, action.tanda],
       };
     default:
       return initState;

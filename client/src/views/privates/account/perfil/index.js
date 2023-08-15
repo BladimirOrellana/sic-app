@@ -4,29 +4,33 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import Loading from "../../../../components/loading/lindex";
-import { logOutUserAction } from "../../../../redux/actions/authUserActions";
-import { auth } from "./../../../../firebase/firebase";
+
+import { auth } from "../../../../firebase/firebase";
 import CreateTandaModal from "../../../../components/createTandaModal";
-import Tandas from "../../../../components/getTandas";
-import GetTandasCreatedBy from "../../../../components/getTandas/getTandasCreatedBy";
+import {
+  registerStart,
+  registerStartAction,
+} from "../../../../redux/actions/registerUserAction";
+
 export default function Perfil() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.currentUser);
-  const loading = useSelector((state) => state.user.loading);
+  const User = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
+  console.log(" auth user ", User);
+  console.log("loading.................", loading);
   return (
     <div>
       {loading === true ? (
         <Loading />
       ) : (
         <div>
-          {user ? (
+          {User ? (
             <div>
               <p>Perfil</p>
-              {user.username}
-              <CreateTandaModal />
+              {User.username}
               <div>
                 <h1>Mis tandas </h1>
-                <GetTandasCreatedBy />
+
                 {}
               </div>
               <Button onClick={() => dispatch(logOutUserAction(auth))}>

@@ -5,26 +5,19 @@ import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 
-import {
-  registerUserWithEmailAction,
-  signUpUserFirebaseAction,
-} from "../../../redux/actions/userActions";
-import GetAllUsers from "../../privates/account/Admin/getAllUsers";
-
 import Alerts from "../../../components/alerts";
 import { redirect } from "react-router-dom";
 
 import Loading from "../../../components/loading/lindex";
+import { registerStartAction } from "../../../redux/actions/registerUserAction";
 export default function SignUp() {
   const navigate = useNavigate();
-  const userAuth = useSelector((state) => state.user.currentUser);
-  const loading = useSelector((state) => state.user.loading);
-
-  console.log("current 3.uid", userAuth);
-
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
-
+  const User = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
+  console.log(" auth user ", User);
+  console.log("loading.................", loading);
   const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
@@ -44,17 +37,16 @@ export default function SignUp() {
   };
   const handleSummit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      signUpUserFirebaseAction({
-        username: userName,
-        email: email,
-        password: password,
-        reEnterPassword: reEnterPassword,
-      })
-    );
+    const data = {
+      username: userName,
+      email: email,
+      password: password,
+      reEnterPassword: reEnterPassword,
+    };
+    dispatch(registerStartAction(data));
   };
-  if (userAuth) {
+
+  if (User) {
     return <Navigate replace to="/" />;
   } else {
     return (

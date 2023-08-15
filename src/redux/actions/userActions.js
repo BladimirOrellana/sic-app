@@ -9,7 +9,7 @@ import {
   SET_REGISTER_USER_WITH_EMAIL,
   SET_SIGN_UP_USER_FIREBASE,
   SIGN_UP_USER_FIREBASE,
-} from "./../constants";
+} from "../constants";
 
 export const getAllUsersAction = () => {
   //this send data coming from this addToCart action
