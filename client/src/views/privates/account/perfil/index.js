@@ -7,10 +7,7 @@ import Loading from "../../../../components/loading/lindex";
 
 import { auth } from "../../../../firebase/firebase";
 import CreateTandaModal from "../../../../components/createTandaModal";
-import {
-  registerStart,
-  registerStartAction,
-} from "../../../../redux/actions/registerUserAction";
+import { logOutUserStartAction } from "../../../../redux/actions/registerUserAction";
 
 export default function Perfil() {
   const dispatch = useDispatch();
@@ -24,7 +21,7 @@ export default function Perfil() {
         <Loading />
       ) : (
         <div>
-          {User ? (
+          {User !== null ? (
             <div>
               <p>Perfil</p>
               {User.username}
@@ -33,7 +30,7 @@ export default function Perfil() {
 
                 {}
               </div>
-              <Button onClick={() => dispatch(logOutUserAction(auth))}>
+              <Button onClick={() => dispatch(logOutUserStartAction(auth))}>
                 Logout
               </Button>{" "}
             </div>

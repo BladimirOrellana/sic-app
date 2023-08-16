@@ -9,6 +9,7 @@ import Alerts from "../../../components/alerts";
 import { redirect } from "react-router-dom";
 
 import Loading from "../../../components/loading/lindex";
+import { loginStartAction } from "../../../redux/actions/registerUserAction";
 export default function Login() {
   const navigate = useNavigate();
 
@@ -27,14 +28,17 @@ export default function Login() {
   };
 
   const handleSummit = (e) => {
+    e.preventDefault();
     const data = {
       email: email,
       password: password,
     };
-    e.preventDefault();
+
+    console.log("login user ", data);
+    dispatch(loginStartAction(data));
   };
   if (User) {
-    return <Navigate replace to="/perfil" />;
+    return <Navigate replace to="/" />;
   } else {
     return (
       <div>
