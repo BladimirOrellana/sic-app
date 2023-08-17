@@ -4,7 +4,7 @@ import {
   registerUserFirebaseRequest,
   requestLogoutUser,
   requestSetUser,
-} from "../RequestSaga/registerUserRequest";
+} from "../requestSaga/registerUserRequest";
 import {
   logOutUserSuccessAction,
   loginFailAction,
@@ -15,7 +15,6 @@ import {
   setAuthUserStartAction,
   setAuthUserSuccessAction,
 } from "../../actions/registerUserAction";
-import { setErrorMessage } from "../../actions/messagesAction";
 
 export function* handlerRegisterUserFirebase({ payload }) {
   console.log("handler payload ", payload.email);

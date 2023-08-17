@@ -1,4 +1,4 @@
-import tandaApi from "./../../../api/tanda";
+import tandaApi from "../../../api/tanda";
 
 export const getTandaByUserRequest = async (payload) => {
   console.log("data from handler create ", payload);

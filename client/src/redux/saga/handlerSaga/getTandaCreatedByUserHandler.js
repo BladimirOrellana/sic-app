@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { getTandaByUserRequest } from "../RequestSaga/getTandaCreatedByUserRequest";
+import { getTandaByUserRequest } from "../requestSaga/getTandaCreatedByUserRequest";
 import { setErrorMessage } from "../../actions/messagesAction";
 import {
   getTandaCreatedByUserStartAction,

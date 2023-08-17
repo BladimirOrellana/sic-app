@@ -1,8 +1,8 @@
 import { call, put } from "redux-saga/effects";
 import { createTandaSuccessAction } from "./../../actions/createTanda";
-import { requestCreateTanda } from "../RequestSaga/createTandaRequest";
+import { requestCreateTanda } from "../requestSaga/createTandaRequest";
 import { getTandaCreatedByUserSuccessAction } from "../../actions/getTandaCreatedByUserActions";
-import { getTandaByUserRequest } from "../RequestSaga/getTandaCreatedByUserRequest";
+import { getTandaByUserRequest } from "../requestSaga/getTandaCreatedByUserRequest";
 
 export function* handlerCreateTanda(data) {
   try {
