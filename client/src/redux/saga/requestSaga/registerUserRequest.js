@@ -1,5 +1,5 @@
-import userApi from "./../../../api/user";
-import { auth } from "./../../../firebase/firebase";
+import userApi from "../../../api/user";
+import { auth } from "../../../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   signOut,

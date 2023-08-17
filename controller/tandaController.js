@@ -20,7 +20,6 @@ module.exports = {
             })
             .catch((err) => res.status(422));
         }
-        return res.json(result);
       })
       .catch((err) => {
         console.log("data controller create result", err);

@@ -4,7 +4,7 @@ import {
   registerUserFirebaseRequest,
   requestLogoutUser,
   requestSetUser,
-} from "../requestSaga/registerUserRequest";
+} from "../RequestSaga/registerUserRequest";
 import {
   logOutUserSuccessAction,
   loginFailAction,

@@ -15,10 +15,6 @@ import { getTandaCreatedbyAction } from "../../redux/actions/createTandaAction";
 export default function GetTandasCreatedBy() {
   dayjs.extend(relativeTime);
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.currentUser);
-
-  const tanda = useSelector((state) => state.tandas.tandaCreatedBy);
-  console.log("user tandas==========> ", tanda);
 
   // // const tandas = "hi";
 

@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import ApiTanda from "../../api/tanda";
 import TextField from "@mui/material/TextField";
+import { createTandaStartAction } from "../../redux/actions/createTanda";
 
 const style = {
   position: "absolute",
@@ -29,7 +30,8 @@ export default function CreateTandaModal() {
   const [pricePerNumber, setPricePerNumber] = useState(null);
 
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.auth.user);
+  console.log("create tanda ", user);
   const handleSumit = (e) => {
     e.preventDefault();
     if (tandaName === null) {
@@ -43,7 +45,7 @@ export default function CreateTandaModal() {
 
         createdAt: Date.now(),
       };
-
+      dispatch(createTandaStartAction(data));
       handleClose();
     }
   };
