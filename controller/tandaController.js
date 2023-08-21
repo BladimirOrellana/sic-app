@@ -44,6 +44,7 @@ module.exports = {
   findCreatedBy: function (req, res) {
     console.log("data controller", req.params.uid);
     db.Tanda.find({ createdBy: req.params.uid })
+      .sort({ _id: -1 })
       .then((result) => {
         console.log("result getbyid ", result);
         return res.json(result);

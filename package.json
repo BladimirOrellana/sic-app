@@ -14,7 +14,7 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "push": "git add . && git commit -m'upload' && git push origin main "
+    "push": "git add . && git commit -m'upload' && git push origin main && git push heroku main"
   },
   "dependencies": {
     "@fontsource/roboto": "^5.0.5",
