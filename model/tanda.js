@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const tandaSchema = new Schema({
   tandaName: String,
   numberOfWeeks: Number,
+  aveliableNumbers: [Number],
   myNumber: Number,
   startingDate: Date,
   endingDate: Date,

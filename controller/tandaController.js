@@ -41,6 +41,15 @@ module.exports = {
       })
       .catch((err) => res.status(422));
   },
+  findById: function (req, res) {
+    console.log("data controller", req.params.id);
+    db.Tanda.findOne({ _id: req.params.id })
+      .then((result) => {
+        console.log("result getbyid tanda ", result);
+        return res.json(result);
+      })
+      .catch((err) => res.status(422));
+  },
   findCreatedBy: function (req, res) {
     console.log("data controller", req.params.uid);
     db.Tanda.find({ createdBy: req.params.uid })

@@ -75,7 +75,7 @@ export default function CreateTandaModal() {
               fullWidth
               type="text"
               label="Nombre De La Tanda"
-              placeholder="Tu Nombre, etc..."
+              placeholder={"tanda de " + user.username}
               variant="outlined"
             />
             <TextField

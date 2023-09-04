@@ -13,6 +13,7 @@ import Header from "./components/header";
 import BottomAppBar from "./components/bottomNavBar";
 import { ViewPortCheck } from "./components/viewPortCheck/index";
 import Menu from "./components/menu";
+import MyTandaPage from "./views/privates/myTandaPage";
 
 function MainApp() {
   return (
@@ -21,7 +22,9 @@ function MainApp() {
       <Routes>
         {/*  private roots*/}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/perfil/my-tanda/:id" element={<MyTandaPage />} />
         <Route path="/perfil" element={<Perfil />} />
+
         {/*  public roots*/}
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<Menu />} />

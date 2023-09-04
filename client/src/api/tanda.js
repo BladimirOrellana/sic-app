@@ -9,6 +9,10 @@ export default {
     const uid = data.uid;
     return axios.get("/api/users/tanda/" + uid);
   },
+  findById: function (data) {
+    const uid = data.uid;
+    return axios.get("/api/perfil/my-tanda/" + id);
+  },
   getAll: function () {
     return axios.get("/api/users/tanda");
   },
