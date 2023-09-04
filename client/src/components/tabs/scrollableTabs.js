@@ -23,7 +23,7 @@ export default function ScrollableTabs() {
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
       >
-        <Tab label="Latino Tanda" />
+        <Tab label="Candelaria" />
         <Link to={"/"}>
           <Tab label="Home" />
         </Link>

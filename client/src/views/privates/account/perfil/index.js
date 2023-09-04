@@ -31,8 +31,9 @@ export default function Perfil() {
   console.log("loading.................", loading);
   console.log("user Tandas.................", userTandas);
   const data = {};
+
   useEffect(() => {
-    dispatch(getTandaCreatedByUserStartAction(User._id));
+    User ? dispatch(getTandaCreatedByUserStartAction(User._id)) : null;
   }, []);
 
   return (
