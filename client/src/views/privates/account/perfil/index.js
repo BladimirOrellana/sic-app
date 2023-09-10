@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import Loading from "../../../../components/loading/lindex";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { auth } from "../../../../firebase/firebase";
 import CreateTandaModal from "../../../../components/createTandaModal";
 import { logOutUserStartAction } from "../../../../redux/actions/registerUserAction";
-import { getTandaCreatedByUserStartAction } from "../../../../redux/actions/getTandaCreatedByUserActions";
 import MyTandaCard from "./myTandaCard";
 import userAvatar from "./../../../../assets/img/avatar.PNG";
 import Avatar from "@mui/material/Avatar";
@@ -32,10 +31,6 @@ export default function Perfil() {
   console.log("user Tandas.................", userTandas);
   const data = {};
 
-  useEffect(() => {
-    User ? dispatch(getTandaCreatedByUserStartAction(User._id)) : null;
-  }, []);
-
   return (
     <div>
       {loading === true ? (
@@ -54,7 +49,7 @@ export default function Perfil() {
                       src={userAvatar}
                       sx={{ width: 100, height: 100 }}
                     />
-                    {User.username}{" "}
+                    <Typography variant="h3">{User.username}</Typography>
                   </Item>
                 </Grid>
                 <Grid xs={4} md={4}>
@@ -62,12 +57,15 @@ export default function Perfil() {
                   <CreateTandaModal />{" "}
                 </Grid>
                 <Grid xs={4} md={4}>
+                  {" "}
+                  <Button variant="outlined">Crear Post</Button>
+                </Grid>
+                <Grid xs={4} md={4}>
                   <Button onClick={() => dispatch(logOutUserStartAction(auth))}>
                     Logout
                   </Button>
                 </Grid>
               </Grid>
-              {userTandas === 0 ? <h1>Mo has creado</h1> : <MyTandaCard />}
             </Box>
           ) : (
             <Navigate replace to={"/login"} />

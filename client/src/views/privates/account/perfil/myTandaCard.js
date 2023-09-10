@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTandaCreatedByUserStartAction } from "../../../../redux/actions/getTandaCreatedByUserActions";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import Box from "@mui/material/Box";
@@ -28,9 +27,6 @@ export default function MyTandaCard() {
   const loading = useSelector((state) => state.auth.loading);
   const userTandas = useSelector((state) => state.tandaCreatedByUser.userTanda);
 
-  useEffect(() => {
-    dispatch(getTandaCreatedByUserStartAction(User._id));
-  }, []);
   const myTandas = userTandas.map((tanda) => {
     const id = tanda._id;
     return (

@@ -22,37 +22,5 @@ export default function BottomAppBar() {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
 
-  return (
-    <Box sx={{ pb: 7 }} ref={ref}>
-      <CssBaseline />
-
-      <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        elevation={3}
-      >
-        <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        >
-          <Link to={"/"}>
-            <BottomNavigationAction icon={<HomeIcon />} />
-          </Link>
-          <Link to={"/contact"}>
-            <BottomNavigationAction icon={<ContactMailIcon />} />
-          </Link>
-          <Link to={"/black-list"}>
-            <BottomNavigationAction icon={<BlockIcon />} />
-          </Link>
-          <Link to={"/perfil"}>
-            <BottomNavigationAction icon={<AccountCircleIcon />} />
-          </Link>
-          <Link to={"/menu"}>
-            <BottomNavigationAction icon={<MoreVertIcon />} />
-          </Link>
-        </BottomNavigation>
-      </Paper>
-    </Box>
-  );
+  return <Box sx={{ pb: 7 }} ref={ref}></Box>;
 }

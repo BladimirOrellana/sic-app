@@ -25,28 +25,25 @@ export default function ScrollableTabs() {
       >
         <Tab label="Candelaria" />
         <Link to={"/"}>
-          <Tab label="Home" />
+          <Tab label="hogar" />
         </Link>
         <Link to={"/contact"}>
-          <Tab label="Contact" />
+          <Tab label="Contactar" />
         </Link>
         <Link to={"/about"}>
-          <Tab label="About" />
-        </Link>
-        <Link to={"/black-list"}>
-          <Tab label="Black List" />
+          <Tab label="historia" />
         </Link>
 
         {User ? (
           <div>
             {" "}
             <Link to={"/perfil"}>
-              <Tab label="Perfil" />
+              <Tab label="perfil" />
             </Link>
           </div>
         ) : (
           <Link to={"/login"}>
-            <Tab label="Login" />
+            <Tab label="ingresar" />
           </Link>
         )}
       </Tabs>

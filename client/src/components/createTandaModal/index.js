@@ -4,9 +4,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import ApiTanda from "../../api/tanda";
+import postApi from "../../api/post";
 import TextField from "@mui/material/TextField";
-import { createTandaStartAction } from "../../redux/actions/createTanda";
 
 const style = {
   position: "absolute",
@@ -26,33 +25,41 @@ export default function CreateTandaModal() {
   const [message, setMessage] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [tandaName, setTandaname] = useState(null);
-  const [numberOfWeeks, setNumberOfWeeks] = useState(null);
-  const [pricePerNumber, setPricePerNumber] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [description, setDescription] = useState(null);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   console.log("create tanda ", user);
   const handleSumit = (e) => {
     e.preventDefault();
-    if (tandaName === null) {
+    if (title === null) {
       setMessage("Porfavor escrive el nombre para la tanda.");
     } else {
       const data = {
-        tandaName: tandaName,
+        title: title,
         createdBy: user._id,
-        numberOfWeeks: numberOfWeeks,
-        pricePerNumber: pricePerNumber,
+        price: price,
+        description: description,
 
         createdAt: Date.now(),
       };
-      dispatch(createTandaStartAction(data));
+      console.log(data);
+      postApi
+        .create(data)
+        .then((r) => {
+          console.log("result ", r);
+        })
+        .catch((e) => {
+          console.log("error ", e);
+        });
       handleClose();
     }
   };
   return (
     <div>
-      <Button onClick={handleOpen}>Create Tanda</Button>
+      <Button onClick={handleOpen}>Vender </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -64,37 +71,37 @@ export default function CreateTandaModal() {
             {message}
             <div style={{ textAlign: "center" }}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Create Tanda
+                Vender Articulo, terreno, casa, etc...
               </Typography>
             </div>
           </Box>
           <Box component="form" noValidate autoComplete="off">
             <TextField
               style={styles.margingTop}
-              onChange={(e) => setTandaname(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
               fullWidth
               type="text"
-              label="Nombre De La Tanda"
-              placeholder={"tanda de " + user.username}
+              label="Titulo"
+              placeholder={"Titulo "}
               variant="outlined"
             />
             <TextField
               style={styles.marginTop}
-              onChange={(e) => setNumberOfWeeks(e.target.value)}
+              onChange={(e) => setPrice(e.target.value)}
               fullWidth
               type="number"
-              label="cuantas semanas?"
-              placeholder="Duracion en semanas "
+              label="Precio $"
+              placeholder="Precio $ "
               variant="outlined"
             />
 
             <TextField
               style={styles.marginTop}
-              onChange={(e) => setPricePerNumber(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
               fullWidth
-              type="number"
-              label="Valor del numero"
-              placeholder="$"
+              type="text"
+              label="Descripcion"
+              placeholder="Descripcion"
               variant="outlined"
             />
             <Button

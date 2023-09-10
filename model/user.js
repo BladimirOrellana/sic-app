@@ -9,6 +9,7 @@ const userSchema = new Schema({
   uid: String,
   isAdmin: { type: Boolean, default: false },
   tanda: [{ type: Schema.Types.ObjectId, ref: "Tanda" }],
+  posts: [{ type: Schema.Types.ObjectId, ref: "Posts" }],
   createdAt: Date,
   updatedAt: Date,
 });
