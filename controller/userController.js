@@ -17,9 +17,9 @@ module.exports = {
     console.log("data controller", req.params.uid);
     console.log("data from client ", req.params.email);
     db.User.findOne({ email: req.params.email })
-      .populate("tanda")
+
       .then((result) => {
-        console.log("result getbyid ", result);
+        console.log("result  ", result);
         return res.json(result);
       })
       .catch((err) => res.status(422));

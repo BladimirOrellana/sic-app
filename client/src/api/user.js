@@ -5,9 +5,9 @@ export default {
     console.log("axios data now create", data);
     return axios.post("/api/users", data);
   },
-  findByUid: function (data) {
-    const uid = data.uid;
-    return axios.get("/api/users/user/" + uid);
+  findByEmail: function (data) {
+    const email = data.email;
+    return axios.get("/api/users/user/" + email);
   },
   getAll: function () {
     return axios.get("/api/users");
