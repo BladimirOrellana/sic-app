@@ -15,6 +15,7 @@ module.exports = {
   },
   findByEmail: function (req, res) {
     console.log("data controller", req.params.uid);
+    console.log("data from client ", req.params.email);
     db.User.findOne({ email: req.params.email })
       .populate("tanda")
       .then((result) => {
