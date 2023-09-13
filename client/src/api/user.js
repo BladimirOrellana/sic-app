@@ -12,4 +12,7 @@ export default {
   getAll: function () {
     return axios.get("/api/users");
   },
+  updateUser: function () {
+    return axios.put("/api/users/user/:email");
+  },
 };
