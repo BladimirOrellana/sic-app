@@ -26,7 +26,15 @@ module.exports = {
   },
   update: function (req, res) {
     db.User.findOneAndUpdate({ email: req.params.email }, req.body)
-      .then((dbModel) => res.json(dbModel))
+      .then((dbModel) => {
+        db.User.findOne({ email: dbModel.email })
+
+          .then((result) => {
+            console.log("result  ", result);
+            return res.json(result);
+          })
+          .catch((err) => res.status(422));
+      })
       .catch((err) => res.status(422).json(err));
   },
   remove: function (req, res) {
