@@ -6,5 +6,5 @@ const follwers = require("./follwers");
 router.use("/users", user);
 router.use("/likes", likes);
 router.use("/followers", follwers);
-
+//routes
 module.exports = router;
