@@ -13,6 +13,8 @@ const userSchema = new Schema({
   height: Number,
   gender: String,
   role: String,
+  likes: [{ type: Schema.Types.ObjectId, ref: "Likes" }],
+  Followers: [{ type: Schema.Types.ObjectId, ref: "Followers" }],
   isAdmin: { type: Boolean, default: false },
   createdAt: Date,
   updatedAt: Date,
