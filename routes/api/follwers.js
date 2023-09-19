@@ -6,5 +6,5 @@ router
   .route("/")
   .post(followersController.create)
   .get(followersController.getAll);
-router.route("/followers/:_id").put(followersController.update);
+router.route("/follower/:_id").put(followersController.update);
 module.exports = router;
